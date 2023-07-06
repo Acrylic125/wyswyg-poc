@@ -35,7 +35,21 @@ const Tiptap = () => {
       <button onClick={addImage} className="px-4 py-2 bg-slate-900 text-white">
         Add Image
       </button>
-      <EditorContent editor={editor} />
+      <div
+        className="w-full h-96 overflow-auto border-gray-400 border-2"
+        onDragOver={(e) => {
+          e.preventDefault();
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          if (!(e.dataTransfer && e.dataTransfer.files.length > 0)) return;
+
+          const file = e.dataTransfer?.files[0];
+          console.log(file);
+        }}
+      >
+        <EditorContent editor={editor} />
+      </div>
     </div>
   );
 };
